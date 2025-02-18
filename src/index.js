@@ -3,7 +3,11 @@ const WeatherData = require("./models/weather-data.js");
 const Debouncer = require("./utility/debouncer.js");
 const debouncer = new Debouncer();
 const LocationView = require("./views/location-view.js");
-const locationView = new LocationView(document.querySelector("body"));
+const locationView = new LocationView(
+  document.querySelector(".locationWrapper")
+);
+const WeatherView = require("./views/weather-view.js");
+const weatherView = new WeatherView(document.querySelector("main"));
 
 const search = document.querySelector("#search");
 
@@ -23,6 +27,7 @@ search.addEventListener("input", () => {
   debouncer.debounce(async () => {
     const keyword = search.value;
     const response = await LocationAutocomplete.get(keyword);
+    locationView.remove();
     locationView.createAll(response);
     const locationElements = document.querySelectorAll(".locationElement");
     locationElements.forEach((element) => {
@@ -32,7 +37,8 @@ search.addEventListener("input", () => {
           "metric"
         );
         console.log(weatherData);
+        weatherView.create();
       });
     });
-  }, 3000);
+  }, 1000);
 });
