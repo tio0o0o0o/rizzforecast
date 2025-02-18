@@ -105,7 +105,6 @@ main {
   height: 400px;
   width: min(90%, 1200px);
   border-radius: 12px;
-  background-image: url("./assets/images/Weather=Clear\,\ Moment=Day.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

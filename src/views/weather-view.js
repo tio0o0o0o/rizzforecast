@@ -1,4 +1,17 @@
 const TimeUtil = require("../utility/time.js");
+const icons = {
+  snow: require("../assets/images/snow.svg"),
+  rain: require("../assets/images/rain.svg"),
+  fog: require("../assets/images/fog.svg"),
+  wind: require("../assets/images/wind.svg"),
+  cloudy: require("../assets/images/cloudy.svg"),
+  "partly-cloudy-day": require("../assets/images/partly-cloudy-day.svg"),
+  "partly-cloudy-night": require("../assets/images/partly-cloudy-night.svg"),
+  "clear-day": require("../assets/images/clear-day.svg"),
+  "clear-night": require("../assets/images/clear-night.svg"),
+};
+const day = require("../assets/images/day.png");
+const night = require("../assets/images/night.png");
 
 class WeatherView {
   constructor(parent) {
@@ -20,6 +33,11 @@ class WeatherView {
     location.textContent = weatherData.address;
     locationAndDate.appendChild(location);
 
+    const icon = document.createElement("img");
+    icon.setAttribute("class", "icon");
+    icon.src = icons[weatherData.getCurrentHour().icon];
+    now.appendChild(icon);
+
     const date = document.createElement("div");
     date.setAttribute("class", "date");
     date.textContent = `${TimeUtil.formatDayOfWeekLong(`${weatherData.currentDateTime.year}-${weatherData.currentDateTime.month}-${weatherData.currentDateTime.day}`)}, ${TimeUtil.monthFormatToWord(weatherData.currentDateTime.month)} ${weatherData.currentDateTime.day}, ${weatherData.currentDateTime.year}`;
@@ -32,8 +50,18 @@ class WeatherView {
 
     const temp = document.createElement("div");
     temp.setAttribute("class", "temp");
-    temp.textContent = "69c";
+    temp.textContent = weatherData.getCurrentHour().temp + "°";
     now.appendChild(temp);
+
+    const currentHour = Number(weatherData.currentDateTime.time.slice(0, 2));
+
+    if (currentHour >= 6 && currentHour <= 18) {
+      console.log("Day");
+      now.style.backgroundImage = `url(${day})`;
+    } else {
+      console.log("Night");
+      now.style.backgroundImage = `url(${night})`;
+    }
 
     this.parent.appendChild(now);
   }

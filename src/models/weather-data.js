@@ -15,10 +15,6 @@ class WeatherData {
 
     const data = await response.json();
 
-    console.log("data: " + data);
-
-    console.table(data);
-
     const days = [];
 
     data.days.forEach((day) => {
