@@ -36,8 +36,10 @@ search.addEventListener("input", () => {
           element.textContent,
           "metric"
         );
+        locationView.remove();
         console.log(weatherData);
-        weatherView.create();
+        weatherView.remove();
+        weatherView.create(weatherData);
       });
     });
   }, 1000);

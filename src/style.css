@@ -92,9 +92,61 @@ header {
 }
 
 main {
-  & .today {
+  flex-grow: 1;
+  background-color: var(--grey);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+  gap: 20px;
+}
+
+.now {
+  height: 400px;
+  width: min(90%, 1200px);
+  border-radius: 12px;
+  background-image: url("./assets/images/Weather=Clear\,\ Moment=Day.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  color: white;
+
+  & .locationAndDate {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  & .location {
+    font-size: 30px;
+  }
+
+  & .date {
+    font-size: 20px;
+  }
+
+  & .temp {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    font-size: 80px;
+  }
+
+  & .time {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 30px;
+  }
+
+  & .icon {
     width: 100px;
-    height: 100px;
-    background-color: red;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
   }
 }

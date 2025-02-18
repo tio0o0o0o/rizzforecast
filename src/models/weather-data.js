@@ -1,6 +1,7 @@
 const WeekModel = require("./week-model.js");
 const DayModel = require("./day-model.js");
 const HourModel = require("./hour-model.js");
+const TimeUtil = require("../utility/time.js");
 
 class WeatherData {
   static #apiKey = "RGKH28FJUVVG2258TNR3GFTZC";
@@ -13,6 +14,10 @@ class WeatherData {
     );
 
     const data = await response.json();
+
+    console.log("data: " + data);
+
+    console.table(data);
 
     const days = [];
 
@@ -35,7 +40,15 @@ class WeatherData {
       days.push(dayModel);
     });
 
-    const weekModel = new WeekModel(days, data.resolvedAddress);
+    const tzoffset = data.tzoffset;
+
+    const currentDateTime = TimeUtil.UTCDestructured(tzoffset);
+
+    const weekModel = new WeekModel(
+      days,
+      data.resolvedAddress,
+      currentDateTime
+    );
 
     return weekModel;
   }
