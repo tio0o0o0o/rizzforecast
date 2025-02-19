@@ -6,6 +6,8 @@ const LocationView = require("./views/location-view.js");
 const locationView = new LocationView(
   document.querySelector(".locationWrapper")
 );
+const unexpandIcon = require("./assets/images/unexpand.svg");
+const expandIcon = require("./assets/images/expand.svg");
 
 const WeatherView = require("./views/weather-view.js");
 const weatherView = new WeatherView(document.querySelector("main"));
@@ -64,9 +66,11 @@ function toggleExpand(expand) {
   if (hoursBar.style.display === "flex") {
     console.log("Was flex");
     hoursBar.style.display = "none";
+    expand.src = expandIcon;
   } else {
     console.log("Was none");
     hoursBar.style.display = "flex";
+    expand.src = unexpandIcon;
   }
 }
 

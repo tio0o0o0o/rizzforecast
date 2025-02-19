@@ -46,8 +46,16 @@ header {
     width: 600px;
     flex-shrink: 1;
     font-size: 24px;
-    padding: 10px 20px;
+    padding: 10px 20px 10px 41px;
     border-radius: 100px;
+    background-image: url("./assets/images/search.svg");
+    background-repeat: no-repeat;
+    background-position: 10px 50%;
+    background-size: 26px;
+  }
+
+  & #search::placeholder {
+    color: var(--lighterBlack);
   }
 
   & #logo {
@@ -134,11 +142,13 @@ main {
 
   & .location {
     font-size: 30px;
+    font-weight: bold;
   }
 
   & .date {
     font-size: 20px;
     color: var(--darkGrey);
+    font-weight: bold;
   }
 
   & .temp {
@@ -146,6 +156,7 @@ main {
     bottom: 30px;
     left: 30px;
     font-size: 80px;
+    font-weight: bold;
   }
 
   & .time {
@@ -153,6 +164,7 @@ main {
     top: 30px;
     right: 30px;
     font-size: 30px;
+    font-weight: bold;
   }
 
   & .icon {
@@ -191,6 +203,7 @@ main {
   & .day {
     width: 80px;
     text-align: center;
+    /* font-weight: bold; */
   }
 
   & .expand {
@@ -204,11 +217,20 @@ main {
     width: 185px;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
   }
 
   & .tempmax {
     color: var(--black);
   }
+}
+
+.forecast > *:nth-last-child(2) {
+  border: none;
+}
+
+.forecast > *:last-child {
+  border-top: 1px solid var(--grey);
 }
 
 .hourlyInfoBar {
@@ -235,10 +257,12 @@ main {
   & .hour {
     font-size: 30px;
     color: var(--lighterBlack);
+    /* font-weight: bold; */
   }
 
   & .temp {
     font-size: 30px;
     color: var(--black);
+    font-weight: bold;
   }
 }
