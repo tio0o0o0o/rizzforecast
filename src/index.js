@@ -90,3 +90,17 @@ async function createDefault() {
 }
 
 createDefault();
+
+search.addEventListener("focus", () => {
+  const locationWrapper = document.querySelector(".locationWrapper");
+  if (locationWrapper) {
+    locationWrapper.style.display = "block";
+  }
+});
+
+search.addEventListener("focusout", () => {
+  const locationWrapper = document.querySelector(".locationWrapper");
+  if (locationWrapper) {
+    locationWrapper.style.display = "none";
+  }
+});
