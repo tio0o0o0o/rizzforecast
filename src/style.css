@@ -149,3 +149,64 @@ main {
     right: 30px;
   }
 }
+
+.forecast {
+  background-color: white;
+  height: fit-content;
+  width: min(90%, 1200px);
+  padding: 20px 40px;
+  border-radius: 12px;
+
+  & > *:last-child {
+    border: none;
+  }
+}
+
+.infoBar {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  border-bottom: 1px solid var(--grey);
+  padding: 20px 0;
+  font-size: 30px;
+
+  & .weatherIcon {
+    width: 40px;
+  }
+
+  & .day {
+    width: 80px;
+  }
+
+  & .expand {
+    margin-left: auto;
+    width: 40px;
+  }
+}
+
+.hourlyInfoBar {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--grey);
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+
+  & .hourInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  & .weatherIcon {
+    width: 30px;
+  }
+
+  & .hour {
+    font-size: 18px;
+  }
+
+  & .temp {
+    font-size: 18px;
+  }
+}

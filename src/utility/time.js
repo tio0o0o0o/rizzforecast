@@ -128,6 +128,10 @@ class Time {
   static timeFormat(time) {
     return lightFormat(new Date(`2000-01-01T${time}`), "h:mma");
   }
+
+  static timeFormatSmall(time) {
+    return lightFormat(new Date(`2000-01-01T${time}`), "ha");
+  }
 }
 
 module.exports = Time;

@@ -6,10 +6,14 @@ const LocationView = require("./views/location-view.js");
 const locationView = new LocationView(
   document.querySelector(".locationWrapper")
 );
+
 const WeatherView = require("./views/weather-view.js");
 const weatherView = new WeatherView(document.querySelector("main"));
 
 const search = document.querySelector("#search");
+
+const ForecastView = require("./views/forecast-view.js");
+const forecastView = new ForecastView(document.querySelector("main"));
 
 require("./style.css");
 
@@ -40,6 +44,7 @@ search.addEventListener("input", () => {
         console.log(weatherData);
         weatherView.remove();
         weatherView.create(weatherData);
+        forecastView.createAll(weatherData.days);
       });
     });
   }, 1000);
