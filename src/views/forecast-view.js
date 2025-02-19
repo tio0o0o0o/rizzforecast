@@ -46,8 +46,17 @@ class ForecastView {
 
     const temp = document.createElement("div");
     temp.setAttribute("class", "temp");
-    temp.textContent = `${dayInfo.tempmax}°  ${dayInfo.tempmin}°`;
     infoBar.appendChild(temp);
+
+    const tempmax = document.createElement("div");
+    tempmax.setAttribute("class", "tempmax");
+    tempmax.textContent = `${dayInfo.tempmax}°`;
+    temp.appendChild(tempmax);
+
+    const tempmin = document.createElement("div");
+    tempmin.setAttribute("class", "tempmin");
+    tempmin.textContent = `${dayInfo.tempmin}°`;
+    temp.appendChild(tempmin);
 
     const expand = document.createElement("input");
     expand.setAttribute("type", "image");

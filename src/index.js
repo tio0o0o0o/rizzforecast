@@ -98,9 +98,26 @@ search.addEventListener("focus", () => {
   }
 });
 
-search.addEventListener("focusout", () => {
-  const locationWrapper = document.querySelector(".locationWrapper");
-  if (locationWrapper) {
-    locationWrapper.style.display = "none";
+// search.addEventListener("focusout", () => {
+//   const locationWrapper = document.querySelector(".locationWrapper");
+//   if (locationWrapper) {
+//     locationWrapper.style.display = "none";
+//   }
+// });
+
+document.addEventListener("click", (event) => {
+  const classList = event.target.classList;
+
+  if (
+    classList.contains("searchbar") ||
+    classList.contains("locationWrapper") ||
+    classList.contains("locationElement")
+  ) {
+    console.log("Don't hide");
+  } else {
+    const locationWrapper = document.querySelector(".locationWrapper");
+    if (locationWrapper) {
+      locationWrapper.style.display = "none";
+    }
   }
 });

@@ -1,6 +1,9 @@
 :root {
   --black: rgb(56, 56, 56);
+  --lightBlack: rgb(85, 85, 85);
+  --lighterBlack: rgb(143, 143, 143);
   --grey: rgb(230, 230, 230);
+  --darkGrey: rgb(218, 218, 218);
 }
 
 *,
@@ -70,24 +73,33 @@ header {
     left: 0;
     right: 0;
     background-color: white;
-    box-shadow: 1px 1px 4px black;
     cursor: pointer;
     font-size: 24px;
     border-radius: 14px;
     overflow: hidden;
   }
 
-  & .locationElement {
-    border-bottom: 1px solid black;
+  /* & .locationWrapper.enabled {
     padding: 10px 20px;
+  } */
+
+  & .locationElement {
+    border-bottom: 1px solid var(--grey);
+    padding: 10px 0;
+    margin: 0 20px;
   }
 
   & .locationElement:last-child {
     border-bottom: none;
+    margin-bottom: 10px;
+  }
+
+  & .locationElement:first-child {
+    margin-top: 10px;
   }
 
   & .locationElement:hover {
-    background-color: var(--grey);
+    color: var(--lightBlack);
   }
 }
 
@@ -126,6 +138,7 @@ main {
 
   & .date {
     font-size: 20px;
+    color: var(--darkGrey);
   }
 
   & .temp {
@@ -169,6 +182,7 @@ main {
   border-bottom: 1px solid var(--grey);
   padding: 20px 0;
   font-size: 30px;
+  color: var(--lighterBlack);
 
   & .weatherIcon {
     width: 40px;
@@ -176,16 +190,29 @@ main {
 
   & .day {
     width: 80px;
+    text-align: center;
   }
 
   & .expand {
     margin-left: auto;
     width: 40px;
   }
+
+  & .temp {
+    display: flex;
+    gap: 20px;
+    width: 185px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .tempmax {
+    color: var(--black);
+  }
 }
 
 .hourlyInfoBar {
-  padding: 20px 0;
+  padding: 20px 10px;
   border-bottom: 1px solid var(--grey);
   gap: 20px;
   overflow: hidden;
@@ -195,18 +222,23 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 14px;
+    box-shadow: 1px 1px 5px 1px var(--grey);
   }
 
   & .weatherIcon {
-    width: 30px;
+    width: 40px;
   }
 
   & .hour {
-    font-size: 18px;
+    font-size: 30px;
+    color: var(--lighterBlack);
   }
 
   & .temp {
-    font-size: 18px;
+    font-size: 30px;
+    color: var(--black);
   }
 }
