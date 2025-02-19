@@ -55,7 +55,7 @@ class WeatherView {
 
     const currentHour = Number(weatherData.currentDateTime.time.slice(0, 2));
 
-    if (currentHour >= 6 && currentHour <= 18) {
+    if (currentHour >= 7 && currentHour <= 18) {
       console.log("Day");
       now.style.backgroundImage = `url(${day})`;
     } else {
