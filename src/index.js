@@ -45,7 +45,48 @@ search.addEventListener("input", () => {
         weatherView.remove();
         weatherView.create(weatherData);
         forecastView.createAll(weatherData.days);
+
+        const expands = document.querySelectorAll(".expand");
+        expands.forEach((expand) => {
+          expand.addEventListener("click", () => {
+            toggleExpand(expand);
+          });
+        });
+
+        search.value = "";
       });
     });
   }, 1000);
 });
+
+function toggleExpand(expand) {
+  const hoursBar = expand.parentNode.nextElementSibling;
+  if (hoursBar.style.display === "flex") {
+    console.log("Was flex");
+    hoursBar.style.display = "none";
+  } else {
+    console.log("Was none");
+    hoursBar.style.display = "flex";
+  }
+}
+
+async function createDefault() {
+  const wd = await WeatherData.get(
+    "Dildo, Newfoundland and Labrador, NL, Canada",
+    "metric"
+  );
+  locationView.remove();
+  console.log(wd);
+  weatherView.remove();
+  weatherView.create(wd);
+  forecastView.createAll(wd.days);
+
+  const exp = document.querySelectorAll(".expand");
+  exp.forEach((exp) => {
+    exp.addEventListener("click", () => {
+      toggleExpand(exp);
+    });
+  });
+}
+
+createDefault();
