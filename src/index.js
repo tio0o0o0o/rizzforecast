@@ -17,6 +17,8 @@ const search = document.querySelector("#search");
 const ForecastView = require("./views/forecast-view.js");
 const forecastView = new ForecastView(document.querySelector("main"));
 
+const unitSelect = document.querySelector("#unitSelect");
+
 require("./style.css");
 
 // searchButton.addEventListener("click", async () => {
@@ -31,33 +33,38 @@ require("./style.css");
 
 search.addEventListener("input", () => {
   debouncer.debounce(async () => {
-    const keyword = search.value;
-    const response = await LocationAutocomplete.get(keyword);
-    locationView.remove();
-    locationView.createAll(response);
-    const locationElements = document.querySelectorAll(".locationElement");
-    locationElements.forEach((element) => {
-      element.addEventListener("click", async () => {
-        const weatherData = await WeatherData.get(
-          element.textContent,
-          "metric"
-        );
-        locationView.remove();
-        console.log(weatherData);
-        weatherView.remove();
-        weatherView.create(weatherData);
-        forecastView.createAll(weatherData.days);
+    const keyword = search.value.trim();
+    if (keyword) {
+      const response = await LocationAutocomplete.get(keyword);
+      locationView.remove();
+      locationView.createAll(response);
+      const locationElements = document.querySelectorAll(".locationElement");
+      locationElements.forEach((element) => {
+        element.addEventListener("click", () => {
+          const weatherData = WeatherData.get(
+            element.textContent,
+            unitSelect.value
+          );
 
-        const expands = document.querySelectorAll(".expand");
-        expands.forEach((expand) => {
-          expand.addEventListener("click", () => {
-            toggleExpand(expand);
+          weatherData.then((weatherDataResponse) => {
+            locationView.remove();
+            console.log(weatherDataResponse);
+            weatherView.remove();
+            weatherView.create(weatherDataResponse);
+            forecastView.createAll(weatherDataResponse.days);
+
+            const expands = document.querySelectorAll(".expand");
+            expands.forEach((expand) => {
+              expand.addEventListener("click", () => {
+                toggleExpand(expand);
+              });
+            });
+
+            search.value = "";
           });
         });
-
-        search.value = "";
       });
-    });
+    }
   }, 1000);
 });
 
