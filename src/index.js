@@ -46,22 +46,32 @@ search.addEventListener("input", () => {
             unitSelect.value
           );
 
-          weatherData.then((weatherDataResponse) => {
-            locationView.remove();
-            console.log(weatherDataResponse);
-            weatherView.remove();
-            weatherView.create(weatherDataResponse);
-            forecastView.createAll(weatherDataResponse.days);
+          weatherData.then(
+            (weatherDataResponse) => {
+              locationView.remove();
+              console.log(weatherDataResponse);
+              weatherView.remove();
+              weatherView.create(weatherDataResponse);
+              forecastView.createAll(weatherDataResponse.days);
 
-            const expands = document.querySelectorAll(".expand");
-            expands.forEach((expand) => {
-              expand.addEventListener("click", () => {
-                toggleExpand(expand);
+              const expands = document.querySelectorAll(".expand");
+              expands.forEach((expand) => {
+                expand.addEventListener("click", () => {
+                  toggleExpand(expand);
+                });
               });
-            });
 
-            search.value = "";
-          });
+              search.value = "";
+            },
+            (response) => {
+              locationView.remove();
+              weatherView.remove();
+              const errorMsg = document.createElement("div");
+              errorMsg.setAttribute("class", "errorMsg");
+              errorMsg.textContent = `Data isn't available`;
+              document.querySelector("main").appendChild(errorMsg);
+            }
+          );
         });
       });
     }
